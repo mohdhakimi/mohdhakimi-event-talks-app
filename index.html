@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechTalks 2026 - 1-Day Event</title>
+    <style>
+        :root {
+            --primary-blue: #003366;
+            --accent-blue: #00509d;
+            --light-bg: #f4f7f9;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --text-muted: #666666;
+            --transition-bg: #e9ecef;
+            --lunch-bg: #d1ecf1;
+            --border-color: #dee2e6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+            position: relative;
+        }
+
+        #categorySearch {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 25px;
+            border: none;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            outline: none;
+        }
+
+        #categorySearch:focus {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .schedule-item {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-blue);
+            transition: transform 0.2s ease;
+        }
+
+        .schedule-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .schedule-item.break {
+            background-color: var(--transition-bg);
+            border-left-color: #adb5bd;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        .schedule-item.lunch {
+            background-color: var(--lunch-bg);
+            border-left-color: #0c5460;
+            text-align: center;
+            font-weight: bold;
+            color: #0c5460;
+        }
+
+        .time {
+            font-weight: bold;
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            font-size: 1.4rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .speakers {
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .category-tag {
+            background-color: #e7f3ff;
+            color: var(--accent-blue);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .schedule-item {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>TechTalks 2026</h1>
+    <p>Innovating the Future, One Talk at a Time</p>
+    <div class="search-container">
+        <input type="text" id="categorySearch" placeholder="Search by category (e.g. Cloud, AI, Web)...">
+    </div>
+</header>
+
+<main id="scheduleGrid">
+    <!-- Schedule will be injected here by JavaScript -->
+</main>
+
+<footer>
+    &copy; 2026 TechTalks Event Committee. All rights reserved.
+</footer>
+
+<script>
+    const talks = [
+        {
+            id: 1,
+            type: 'talk',
+            startTime: '10:00 AM',
+            endTime: '11:00 AM',
+            title: 'Architecting Scalable Microservices',
+            speakers: ['Jane Doe', 'Michael Smith'],
+            categories: ['Cloud', 'Architecture', 'DevOps'],
+            description: 'Learn the foundational principles of building microservices that can handle millions of requests while maintaining high availability and developer velocity.'
+        },
+        { id: 't1', type: 'transition', title: 'Transition Break', startTime: '11:00 AM', endTime: '11:10 AM' },
+        {
+            id: 2,
+            type: 'talk',
+            startTime: '11:10 AM',
+            endTime: '12:10 PM',
+            title: 'Modern Frontend with Web Components',
+            speakers: ['John Smith'],
+            categories: ['Web', 'JS', 'UI'],
+            description: 'Explore how native Web Components are changing the way we build reusable UI libraries across different frameworks like React, Vue, and Angular.'
+        },
+        { id: 't2', type: 'transition', title: 'Transition Break', startTime: '12:10 PM', endTime: '12:20 PM' },
+        {
+            id: 3,
+            type: 'talk',
+            startTime: '12:20 PM',
+            endTime: '01:20 PM',
+            title: 'AI in Production: Challenges and Best Practices',
+            speakers: ['Alice Wong', 'David Lee'],
+            categories: ['AI', 'ML', 'Data'],
+            description: 'Moving from a Jupyter notebook to a production-grade AI system is hard. This talk covers MLOps, model monitoring, and ethical considerations.'
+        },
+        { id: 'lunch', type: 'lunch', title: 'Lunch Break', startTime: '01:20 PM', endTime: '02:20 PM' },
+        {
+            id: 4,
+            type: 'talk',
+            startTime: '02:20 PM',
+            endTime: '03:20 PM',
+            title: 'Cybersecurity Trends for 2026',
+            speakers: ['Bob Miller'],
+            categories: ['Security', 'Cloud'],
+            description: 'An in-depth look at emerging threats in the cloud-native ecosystem and the zero-trust strategies needed to combat them.'
+        },
+        { id: 't3', type: 'transition', title: 'Transition Break', startTime: '03:20 PM', endTime: '03:30 PM' },
+        {
+            id: 5,
+            type: 'talk',
+            startTime: '03:30 PM',
+            endTime: '04:30 PM',
+            title: 'Mastering TypeScript for Enterprise',
+            speakers: ['Sarah Chen'],
+            categories: ['Web', 'TypeScript', 'Dev'],
+            description: 'Deep dive into advanced TypeScript patterns that help large teams maintain type safety and catch bugs before they ever hit production.'
+        },
+        { id: 't4', type: 'transition', title: 'Transition Break', startTime: '04:30 PM', endTime: '04:40 PM' },
+        {
+            id: 6,
+            type: 'talk',
+            startTime: '04:40 PM',
+            endTime: '05:40 PM',
+            title: 'The Future of Edge Computing',
+            speakers: ['David Ross'],
+            categories: ['Cloud', 'Edge', 'IoT'],
+            description: 'Decentralizing the cloud: How edge computing is enabling real-time processing for IoT devices and reducing latency for global applications.'
+        }
+    ];
+
+    const scheduleGrid = document.getElementById('scheduleGrid');
+    const searchInput = document.getElementById('categorySearch');
+
+    function renderSchedule(filterText = '') {
+        scheduleGrid.innerHTML = '';
+        
+        const filteredTalks = talks.filter(item => {
+            if (item.type !== 'talk') return true; // Always show breaks if we are searching (or logic below)
+            if (!filterText) return true;
+            
+            return item.categories.some(cat => 
+                cat.toLowerCase().includes(filterText.toLowerCase())
+            );
+        });
+
+        // If searching, we might want to hide breaks if they are adjacent to hidden talks
+        // But for simplicity, we'll show breaks if ANY talk remains, or just show everything if no filter.
+        // Let's refine: if searching, only show the talks that match and hide breaks for a cleaner "search result" view.
+        const displayList = filterText 
+            ? filteredTalks.filter(item => item.type === 'talk') 
+            : filteredTalks;
+
+        if (displayList.length === 0) {
+            scheduleGrid.innerHTML = '<div class="no-results">No talks found for this category.</div>';
+            return;
+        }
+
+        displayList.forEach(item => {
+            const el = document.createElement('div');
+            el.className = `schedule-item ${item.type}`;
+            
+            if (item.type === 'talk') {
+                el.innerHTML = `
+                    <span class="time">${item.startTime} - ${item.endTime}</span>
+                    <h2 class="title">${item.title}</h2>
+                    <p class="speakers">Speakers: ${item.speakers.join(', ')}</p>
+                    <p class="description">${item.description}</p>
+                    <div class="categories">
+                        ${item.categories.map(cat => `<span class="category-tag">${cat}</span>`).join('')}
+                    </div>
+                `;
+            } else {
+                el.innerHTML = `
+                    <span class="time">${item.startTime} - ${item.endTime}</span>
+                    <h3>${item.title}</h3>
+                `;
+            }
+            
+            scheduleGrid.appendChild(el);
+        });
+    }
+
+    searchInput.addEventListener('input', (e) => {
+        renderSchedule(e.target.value);
+    });
+
+    // Initial render
+    renderSchedule();
+</script>
+
+</body>
+</html>
